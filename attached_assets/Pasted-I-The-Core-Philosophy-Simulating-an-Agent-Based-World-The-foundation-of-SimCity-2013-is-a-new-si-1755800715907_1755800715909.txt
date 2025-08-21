@@ -1,0 +1,104 @@
+I. The Core Philosophy: Simulating an Agent-Based World
+The foundation of SimCity (2013) is a new simulation engine known as GlassBox, which represents a fundamental shift in design philosophy from previous titles in the franchise. Conceived and built by Creative Director Ocean Quigley and Chief Architect Andrew Willmott, the engine was originally intended for a series of mobile games before being repurposed for 
+
+SimCity. Rather than simulating high-level statistical data and generating animations to represent those numbers, the GlassBox engine operates from the ground up using individual "agents" as its building blocks. These agents are autonomous simulation units that represent both tangible objects, such as water and power, and abstract concepts, like individual workers or shoppers. Every visual element and on-screen animation is a direct and real-time reflection of an agent's activity within the simulation. This design principle extends to the game's audio, which is synchronized with the simulation's "pulse". For example, the sound of a cash register signifies a purchase being made by a Sim agent, and the smoke puffing from a power plant represents pollution agents entering the atmosphere. This bottom-up approach creates a highly responsive and visually dynamic world that feels alive and reacts to the player's actions in a tangible way.
+
+The Sims themselves are a primary example of this agent-based design. They are not complex, simulated individuals with full lives but rather simple agents whose behavior is governed by a singular, straightforward objective: finding the first available home, job, or destination they need to fulfill their role. This simple behavior is the basis for all urban functions, from traffic flow to economic output. However, this design has a curious emergent property in larger cities. Once a city's population exceeds a certain threshold, the game begins to generate "ghost sims." These are numerical representations of people who contribute to the costs of services but do not actually live, work, or move on the roads, creating an artificial inflation of the city's stated size.
+
+The engine's foundational premise, while elegant in its simplicity, creates mechanical behaviors that may seem counterintuitive to a player expecting a realistic model of urban life. A prime example is the pathfinding system for vehicle agents. Rather than using sophisticated algorithms that account for real-time traffic congestion or road density, the simulation employs a simplistic A* pathfinding system that only calculates the physically shortest route. As a consequence, vehicles will choose a traffic-packed, two-lane road over a slightly longer, multi-lane avenue that is completely clear, leading to gridlock. This behavior is further compounded by a noticeable "right-turn bias" in the Sim agents, which can lead to additional congestion. To manage traffic effectively, a player must learn to work with these simplified agent rules—for example, by using T-intersections instead of four-way intersections to avoid traffic light complications—rather than applying real-world urban planning logic.
+
+II. Laying the Foundation: Infrastructure and Development
+Roads: The City's Lifelines
+The road network is the most critical foundational system in the game, serving as the central nervous system for all urban functions. The game's road tool provides five distinct drawing styles—straight, square, arc, circle, and curvy—and allows for precision placement with a shift-key function to create perpendicular intersections. The system also includes guides to help players maintain consistent spacing, which are represented by dashed white lines that the cursor can "snap" to.
+
+Roads are categorized into two main types: streets and avenues. Streets are 24 meters wide, while avenues are 48 meters wide, and they determine the maximum possible density for the buildings zoned along them. The road type also sets the upper limit for building density, meaning a low-density dirt road can only support low-density buildings, while a high-density avenue can support skyscrapers. A key mechanical innovation is that all road types automatically carry all three major utilities—power, water, and sewage—eliminating the need for a separate, secondary grid system of pipes or power lines. A player can upgrade or downgrade individual road sections between intersections, which allows for city growth without having to bulldoze the entire network.
+
+Zoning and Growth Mechanics
+The primary tool for urban development is the zoning system, which allows players to designate land for Residential (R), Commercial (C), and Industrial (I) use. These zones are placed directly adjacent to roads. A color-coded RCI meter at the bottom of the screen indicates the overall demand for each zone type, which guides the player's development strategy. Buildings in these zones undergo two types of progression: increasing in density (from low to medium to high) and increasing in wealth (from R$ to R$$$ and so on). Buildings require power, water, and increased land value to grow. The game also features a special agricultural zone, which is a low-density industrial type used for farms.
+
+A central, and often unintuitive, aspect of the simulation is the wealth-specific nature of agent interactions. The game operates on a system of segregated economic loops, where a low-wealth Sim agent will only seek a low-wealth job and shop at a low-wealth store. They do not upgrade to a higher wealth class and seek a better job; instead, the game's logic requires new, higher-wealth buildings to be built to attract a new wave of higher-wealth Sims. This means a dense city of low-wealth skyscrapers will not satisfy the demand for medium or high-wealth workers. The player must manage these three distinct economic classes ($/$$/$$$) independently, which is why a common strategy is to separate zones by wealth.
+
+Land value, which is a key driver for wealth progression, is also governed by a simplified mechanical rule set. The game's calculation of land value is primarily based on the proximity of a zone to parks and civic buildings. The system notably disregards other real-world factors like proximity to rivers, lakes, or terrain type. This mechanical simplification makes parks the most direct and reliable tool for the player to raise land value and influence which wealth class of Sims moves into a given area.
+
+Essential Utilities: Powering the Machine
+A city's basic functions rely on three core utilities: power, water, and sewage. The placement of these facilities is crucial due to the game's environmental simulation. For instance, dirty power plants (coal or oil) and sewage outflow pipes generate pollution, and it is a core mechanical requirement to place them downwind of residential zones and away from water sources to prevent Sims from getting sick. The game allows for precise control over utility output with funding sliders, enabling players to manually adjust production to meet demand and manage their budget. Utilities can also be shared between cities in a region, allowing one city to specialize in providing power or water to its neighbors.
+
+III. The Engine of Progress: Services and Population
+The City Hall and Department System
+The Town Hall is the central hub for city progression, and it automatically upgrades to a City Hall once a city reaches a population of 2,000. Adding "departments" to the City Hall is the primary method for unlocking advanced buildings and services. There are six departments that can be unlocked, each granting access to a new tier of infrastructure. These unlocks are shared region-wide, which promotes specialization and collaboration between cities, as one city can unlock an advanced building for a neighbor.
+
+Department Name	Unlocked Buildings/Services
+Department of Education	High School & University
+Department of Finance	Tax rate control by wealth/zoning, higher value bonds
+Department of Safety	Hospital, Large Fire Station, Police Precinct
+Department of Tourism	Landmarks & Large Parks
+Department of Transportation	Passenger Train Station, Bus Terminal, Municipal Airport, Ferry Dock
+Department of Utilities	Water Pumping Station, Sewage Treatment Plant, Recycling Center
+
+Exportar a Hojas de cálculo
+Civic Services and Tiered Progression
+City services like fire, police, and health are essential for a happy and functional city. These services are managed through a modular upgrade system. For example, a player can add more garages to a fire station to increase its fleet of trucks or add more jail cells to a police precinct. This modularity provides a strategic choice: building one large, centrally located facility and upgrading it for wider coverage or placing multiple smaller, satellite stations to serve specific areas.
+
+The progression system is designed as a series of cascading dependencies. A player might unlock the Department of Safety to build a Large Fire Station, but the effectiveness of that station is directly tied to the player's ability to manage foundational mechanics like traffic. If a city has poor traffic flow, fire trucks will not be able to reach fires in time, rendering the new, advanced building ineffective. This highlights a core design principle: the game requires a player to master the foundational systems before the more advanced, tiered buildings and services can function as intended.
+
+Education and its Economic Impact
+The education system serves a dual purpose in the simulation, influencing both a residential building's wealth and an industrial building's tech level. The game distinguishes between two types of education: residential education, which is gained by Sims attending schools and returning to their homes, and industrial education (or tech level), which is gained when Sims attend higher education facilities. The education system is tiered, with Grade Schools and High Schools providing foundational education, while Community Colleges and Universities increase the tech level of industrial zones. This is a critical mechanical distinction, as only the tech level from higher education facilities allows an industrial zone to progress from low-tech to high-tech, which is a prerequisite for specializations like electronics. Investing in higher education also increases traffic as students commute to and from school. This creates a key strategic choice for the player: do they prioritize building a city of well-educated, high-wealth citizens, or do they focus on a university to gain access to lucrative high-tech industries, knowing that it will increase traffic and potentially neglect the needs of the lower-wealth population?
+
+IV. The Economic Blueprint: Specializations and Inter-City Trade
+City Specializations: Economic Identity
+Cities in SimCity can specialize in one or more of six distinct economic sectors: Mining, Drilling, Electronics, Gambling, Culture, and Trading. Each specialization offers a unique economic strategy, from resource extraction to tourism and high-tech manufacturing. These specializations require specific buildings that take up significant physical space, so a player must choose which to focus on to leave enough room for basic necessities and other services.
+
+Trading and the Global Market
+The trading specialization is a support system for other specializations. Its primary buildings are trade depots and trade ports, which act as warehouses for a city's industrial zones. The game's global market is a crucial mechanism. Every 60 minutes of game time, global Maxis-owned trucks arrive at a trade depot to buy or sell resources, and the money is added to or deducted from the city's treasury. A specific hierarchy of orders governs how goods are handled: they are first used to satisfy local needs, then sent to a Great Work site, and only then exported to the global market. Specialization buildings and Headquarters unlock new trade modules, and these unlocks are shared region-wide, reinforcing the cooperative aspect of regional play.
+
+The Regional Economy
+The game was designed with the intention of creating a living, interconnected regional economy where cities could specialize and complement each other, sharing resources and services. However, the mechanical implementation of this concept is undermined by a core design principle: the game engine only actively simulates the single city the player is currently in. Other cities in the region are in a "stasis" state, where their condition and resources remain frozen. This has the paradoxical effect of enabling a player to create a "mule city" with a massive budget deficit to provide free, indefinite utilities to other cities without its own resources running out or its budget collapsing, a phenomenon described as a "fun exploit". The intended real-time supply chain between cities does not exist. Instead, resource transfers are abstracted through the global market, where a city sells to the market and a neighboring city buys from it. However, this global market adds a layer of economic depth, as the prices for resources fluctuate based on the collective actions of players worldwide, forcing a player to adapt their economic strategy based on external, global factors.
+
+V. Monumental Ambition: Great Works and Disasters
+Great Works: Collective Regional Goals
+Great Works are large-scale projects that require the collective effort of cities in a region to build. They require significant amounts of funding, workers, and materials and confer a major benefit to the entire region upon completion. There are four Great Works: the Solar Farm, International Airport, Space Center, and Arcology. For example, the Solar Farm requires 600 tons of alloy, 115,000 crates of plastic, and 45,000 crates of processors, and its primary benefit is providing 3,000 MW of unlimited power to all connected cities. The Arcology requires 2,800 tons of metal, 1,000 tons of alloy, and 60,000 crates of TVs, and it is intended to provide a self-sustaining community of workers, shoppers, and students who commute to other cities in the region.
+
+Great Work Name	Simoleon Cost	Construction Resources	Primary Regional Benefit
+Solar Farm	$500,000	600 tons of Alloy, 115,000 crates of Plastic, 45,000 crates of Processors	3,000 MW of power for the region
+International Airport	$1,000,000	2,000 tons of Metal, 1,500 tons of Alloy, 250,000 barrels of Crude Oil	Increased tourism and freight shipping
+Space Center	$1,000,000	40,000 crates of Computers, 1,400 tons of Alloy, 170,000 barrels of Fuel	Increased knowledge and tech level, attracts tourists, generates cash
+Arcology	$1,000,000	2,800 tons of Metal, 1,000 tons of Alloy, 60,000 crates of TVs	Provides a large pool of commuters for the region
+
+Exportar a Hojas de cálculo
+Disaster Mechanics: Unlocking Chaos
+The disaster system in SimCity includes a variety of cataclysmic events, from the natural to the fantastical, such as earthquakes, tornadoes, meteor showers, UFO invasions, and attacks by giant lizards or zombies. While these events can occur randomly, a key mechanical detail is that they can also be triggered by specific in-game actions. This creates a cause-and-effect relationship that ties a player's economic strategy to the risk of disaster.
+
+Disaster Name	Specific In-Game Trigger Condition
+Earthquake	
+Mine 100 tons of coal or raw ore 
+
+Tornado	
+Have 24 wind turbines at wind power plants 
+
+Meteor Strike	
+Have 200 tourists arrive via flights at a municipal airport in one day 
+
+UFO Encounter	
+Ship any resource to a Space Center Great Work 
+
+Zombie Attack	
+Add a diagnostic lab to a hospital and have 15 Sims die in one day 
+
+Big Lizard	
+Burn 100 tons of garbage at an incinerator 
+
+This mechanic transforms the disaster system from a simple threat into a strategic risk-management puzzle. A player who chooses to specialize in mining to get rich must also be prepared to deal with the inevitable earthquake, while a city that relies on burning garbage for power and profit must be ready for a giant lizard attack. The game also features a "Giant Robot-Tank" disaster associated with Dr. Vu.
+
+VI. Multiplayer and Regional Mechanics
+The multiplayer component of SimCity is a central pillar of its design, enabling a region to host multiple cities from different players simultaneously. Regions can be set to be public, allowing anyone to join, or private and invite-only. The game requires a persistent internet connection to function, which facilitates cloud saves and the multiplayer features.
+
+A core mechanical concept is the inter-city connection. Cities within a region are linked by predefined regional networks like highways, railways, and waterways. These connections enable cities to share resources and services. Players can share public services such as fire, police, health care, and garbage collection, as well as essential utilities like power and water. This system promotes specialization, allowing one city to focus on providing power for its neighbors or managing all the region's waste. The unlocks for advanced buildings and departments are shared across the entire region, meaning that once one city unlocks a hospital, all cities in the region gain access to it.
+
+A key cooperative mechanic is the construction of a "Great Work". These large-scale projects, such as a Solar Farm or International Airport, require resources and funding from all cities in the region and provide benefits that are shared with all participating players. The game also includes a global market where players can trade resources. The prices of these resources fluctuate based on the collective supply and demand of players worldwide, forcing players to adapt their economic strategies to external factors. Additionally, players can "gift" resources or cash to other cities in the region, although this system can be unreliable and the transfer of resources may not be instantaneous.
+
+However, the multiplayer experience is shaped by certain mechanical and social challenges. The game's engine only actively simulates the single city the player is currently in, while other cities in the region exist in a "stasis" state. This prevents a true, real-time supply chain between cities. Instead, an oil city selling to a manufacturing city is an abstraction where the first city sells to the global market, and the second city buys from it. This "stasis" can be exploited by players, for example, by creating a "mule city" with a high budget deficit and unsustainable resource use to provide free, indefinite utilities to another city without its own budget collapsing or resources running out. The social aspect is also hindered by a limited in-game chat window, making detailed, asynchronous planning difficult. Furthermore, the system is vulnerable to "griefing," where a player can intentionally ruin a public region by bankrupting a city or creating massive traffic gridlock by flooding a neighboring city with buses.
+
+VII. Conclusion: A System of Elegant Interdependence
+The analysis of SimCity's mechanics reveals a simulation that is defined by elegant interdependence. The game's core design principles, rooted in the GlassBox engine's agent-based simulation, were intended to create a living, responsive world where a player's actions ripple through the city's systems and out into the wider region. Every feature, from the simplified land value system to the tiered service progression and the risk-based disaster triggers, is interconnected, providing a rich framework for urban development.
+
+The game's systems, from the wealth-segregated RCI loops to the dual purpose of education, encourage a nuanced approach to city-building. Rather than following a linear path of development, players are faced with a series of strategic choices, where the mastery of one system (e.g., traffic management) is a prerequisite for the effective functioning of another (e.g., emergency services). While the implementation of certain features, particularly the regional economy, relied on mechanical simplifications that deviated from a true real-time, inter-city simulation, the foundational concepts remain innovative. The game's brilliance lies in this underlying mechanical framework, which, at its best, creates a dynamic and challenging urban puzzle.
